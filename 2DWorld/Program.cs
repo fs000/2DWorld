@@ -8,7 +8,16 @@ namespace _2DWorld {
     class Program {
         static void Main(string[] args) {
 
-            World myWorld = new World(5, 10);
+            Input myInput = new Input();
+
+            int x = myInput.GetX();
+            Console.Clear();
+            int y = myInput.GetY();
+
+            Console.Clear();
+            World myWorld = new World(x, y);
         }
+
+        
     }
 }

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 namespace _2DWorld {
     class Program {
         static void Main(string[] args) {
+
+            World myWorld = new World(5, 10);
         }
     }
 }

@@ -16,8 +16,6 @@ namespace _2DWorld {
 
             Console.Clear();
             World myWorld = new World(x, y);
-        }
-
-        
+        } 
     }
 }

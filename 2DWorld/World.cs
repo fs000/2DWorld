@@ -11,14 +11,15 @@ namespace _2DWorld {
 
         private Random rnd;
 
-        private string character;
+        private char character;
 
         private List<Items> items;
 
         private string containedItems;
 
-        private char space;
+        private char space, bitOp;
 
+        // Constructor
         public World(int x, int y) {
 
             this.x = x;
@@ -26,17 +27,19 @@ namespace _2DWorld {
 
             rnd = new Random();
 
-            character = "";
+            character = ' ';
 
             items = new List<Items>();
 
             containedItems = "";
 
             space = (char)0x20;
+            bitOp = ' ';
 
             CreateWorld();
         }
 
+        // Creates the world according to the given coordinates
         private void CreateWorld() {
 
             for (int i = 0; i < y; i++) {
@@ -44,18 +47,27 @@ namespace _2DWorld {
                 for (int j = 0; j < x; j++) {
 
                     PopulateWorld();
-                    FillString();
 
                     //Debugging
-                    Console.WriteLine($"[{i},{j}] - Contains: {containedItems} - Character: {character}");
+                    //FillString();
 
+                    //Debugging
+                    /* Console.WriteLine($"[{i},{j}] - Contains: {containedItems}" +
+                        $" - Character: {character}"); */
+
+                    //Debugging
                     containedItems = "";
+
+                    Console.Write(character);
+
                     items.Clear();
                 }
                 Console.WriteLine();
             }
         }
 
+        // Populates the world by calling 'NextDouble' 4 times in each cell
+        // If nothing gets added into the items List, an empty space is written
         private void PopulateWorld() {
 
             if (rnd.NextDouble() <= 0.1) {
@@ -80,40 +92,44 @@ namespace _2DWorld {
 
             if (items.Count == 0) {
 
-                Console.Write("-");
-                //character = " ";
+                character = ' ';
                 return;
             }
 
             VerifyItem();
         }
 
+        // Verifies the Items added
+        // If the 'Count' of the List equals 1,
+        //  it turns the item's hex value onto its corresponding char
+        // If the 'Count' is bigger than 1, 
+        //  it makes a bitwise 'OR' operation of the items' hex values,
+        //  turning the result into the corresponding char value
+        // Finally, it adds up whatever char it has (in 'bitOp')
+        //  to the 'space' char, assigning the combined char has 'character'
         private void VerifyItem() {
-
-            char bla = ' ';
 
             if (items.Count == 1) {
 
-                bla = (char)items[0];
+                bitOp = (char)items[0];
 
             } else if (items.Count == 2) {
 
-                bla = (char)(items[0] | items[1]);
+                bitOp = (char)(items[0] | items[1]);
 
             } else if (items.Count == 3) {
 
-                bla = (char)(items[0] | items[1] | items[2]);
+                bitOp = (char)(items[0] | items[1] | items[2]);
 
             } else if (items.Count == 4) {
 
-                bla = (char)(items[0] | items[1] | items[2] | items[3]);
+                bitOp = (char)(items[0] | items[1] | items[2] | items[3]);
             }
 
-            Console.Write(Convert.ToChar(space + bla));
-            //character = Convert.ToChar(space);
+            character = (Convert.ToChar(space + bitOp));
         }
 
-        // Debugging purposes
+        //Debugging
         private void FillString() {
 
             foreach (Items item in items) {

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace _2DWorld {
     class Program {
+
+        // Main method calls Input class
+        // and initiates a World with the retrieved values
         static void Main(string[] args) {
 
             Input myInput = new Input();

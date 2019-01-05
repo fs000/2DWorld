@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace _2DWorld {
 
+    // Items enumeration
     [Flags]
     public enum Items {
 

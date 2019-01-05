@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 namespace _2DWorld {
     class Input {
 
+        // Empty Constructor
         public Input() { }
 
+        // Retrieves the x value of the world
         public int GetX() {
 
             Console.Write("X: ");
@@ -17,6 +19,7 @@ namespace _2DWorld {
             return x;
         }
 
+        // Retrieves the y value of the world
         public int GetY() {
 
             Console.Write("Y: ");
